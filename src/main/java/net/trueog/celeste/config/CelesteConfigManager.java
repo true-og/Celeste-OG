@@ -1,14 +1,15 @@
-package com.idreesinc.celeste.config;
-
-import com.idreesinc.celeste.Celeste;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
+package net.trueog.celeste.config;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.FileConfiguration;
+
+import net.trueog.celeste.Celeste;
+
 public class CelesteConfigManager {
-	
+
 	private final Celeste celeste;
 	private final Map<String, CelesteConfig> worldConfigs = new HashMap<>();
 	private CelesteConfig globalConfig;
@@ -16,7 +17,7 @@ public class CelesteConfigManager {
 	public CelesteConfigManager(Celeste celeste) {
 		this.celeste = celeste;
 	}
-	
+
 	public void processConfigs() {
 		this.worldConfigs.clear();
 		FileConfiguration config = this.celeste.getConfig();

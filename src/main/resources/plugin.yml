@@ -1,8 +1,8 @@
-name: Celeste
-version: 2.0
-api-version: 1.14
-author: Idrees
-main: com.idreesinc.celeste.Celeste
+name: Celeste-OG
+version: 1.0
+api-version: 1.19
+authors: [NotAlexNoyle, Idrees]
+main: net.trueog.celeste.Celeste
 
 commands:
   celeste:
@@ -19,7 +19,7 @@ commands:
 
 permissions:
   celeste.*:
-    description: Gives access to all Celeste commands
+    description: Gives access to all Celeste-OG commands
     children:
       celeste.reload: true
       celeste.info: true

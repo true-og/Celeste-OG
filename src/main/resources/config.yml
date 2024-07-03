@@ -1,4 +1,3 @@
-check-for-updates: true
 shooting-stars-enabled: true
 falling-stars-enabled: true
 begin-spawning-stars-time: 13000
