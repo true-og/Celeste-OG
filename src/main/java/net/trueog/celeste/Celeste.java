@@ -1,5 +1,6 @@
 package net.trueog.celeste;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -29,6 +30,12 @@ public class Celeste extends JavaPlugin {
 	public void reload() {
 		reloadConfig();
 		configManager.processConfigs();
+	}
+	
+	public static void getLogger(String message) {
+		
+		Bukkit.getLogger().info("[Celeste-OG]" + message);
+		
 	}
 
 }

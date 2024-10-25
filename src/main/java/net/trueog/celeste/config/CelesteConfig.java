@@ -3,6 +3,7 @@ package net.trueog.celeste.config;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 
+import net.trueog.celeste.Celeste;
 import net.trueog.celeste.utilities.WeightedRandomBag;
 
 public class CelesteConfig {
@@ -104,7 +105,7 @@ public class CelesteConfig {
 				Material.valueOf(key.toUpperCase());
 				fallingStarDrops.addEntry(key.toUpperCase(), loot.getDouble(key));
 			} catch (IllegalArgumentException e) {
-				System.err.println("Error: Item with name " + key.toUpperCase() + " does not exist, skipping");
+				Celeste.getLogger("Error: Item with name " + key.toUpperCase() + " does not exist, skipping");
 			}
 		}
 		return fallingStarDrops;
