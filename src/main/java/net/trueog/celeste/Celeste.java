@@ -14,6 +14,7 @@ public class Celeste extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
         this.saveDefaultConfig();
 
         this.getCommand("celeste").setExecutor(new CommandCeleste(this));
@@ -23,15 +24,20 @@ public class Celeste extends JavaPlugin {
 
         BukkitRunnable stargazingTask = new Astronomer(this);
         stargazingTask.runTaskTimer(this, 0, 10);
+
     }
 
     public void reload() {
+
         reloadConfig();
         configManager.processConfigs();
+
     }
 
     public static void getLogger(String message) {
 
         Bukkit.getLogger().info("[Celeste-OG]" + message);
+
     }
+
 }

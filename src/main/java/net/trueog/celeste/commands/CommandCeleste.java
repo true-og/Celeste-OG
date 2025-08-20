@@ -10,21 +10,33 @@ public class CommandCeleste implements CommandExecutor {
     Celeste celeste;
 
     public CommandCeleste(Celeste celeste) {
+
         this.celeste = celeste;
+
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
         if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+
             if (sender.hasPermission("celeste.reload")) {
+
                 celeste.reload();
                 sender.sendMessage("Celeste has been reloaded");
+
             } else {
+
                 sender.sendMessage("You do not have permission to use this command");
+
             }
+
             return true;
+
         } else if (args.length == 1 && args[0].equalsIgnoreCase("info")) {
+
             String version = "1.0";
             if (sender.hasPermission("celeste.info")) {
+
                 sender.sendMessage("Celeste-OG" + version);
                 sender.sendMessage("Shooting stars: "
                         + (celeste.getConfig().getBoolean("shooting-stars-enabled") ? "Enabled" : "Disabled"));
@@ -32,11 +44,19 @@ public class CommandCeleste implements CommandExecutor {
                         + (celeste.getConfig().getBoolean("falling-stars-enabled") ? "Enabled" : "Disabled"));
                 sender.sendMessage("Meteor showers: "
                         + (celeste.getConfig().getBoolean("new-moon-meteor-shower") ? "Enabled" : "Disabled"));
+
             } else {
+
                 sender.sendMessage("You do not have permission to use this command");
+
             }
+
             return true;
+
         }
+
         return false;
+
     }
+
 }

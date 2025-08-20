@@ -7,6 +7,7 @@ Celeste-OG is a 1.19 fork of Celeste maintained for [TrueOG Network](https://tru
 - Removed update checker.
 - Resolved 1 deprecation warning in CommandCeleste.java.
 - Built with Purpur API 1.19.4.
+- Configurable falling start height from @SpaceXCheeseWheel.
 
 ## Features
 - Add shooting stars to the night sky, with configurable frequency
