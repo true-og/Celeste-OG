@@ -2,23 +2,23 @@ shooting-stars-enabled: true
 falling-stars-enabled: true
 begin-spawning-stars-time: 13000
 end-spawning-stars-time: 23000
-shooting-stars-per-minute: 6
-shooting-stars-min-height: 130
-shooting-stars-max-height: 160
+shooting-stars-per-minute: 12
+shooting-stars-min-height: 160
+shooting-stars-max-height: 310
 falling-stars-per-minute: 0.2
-falling-stars-max-height: 330
+falling-stars-max-height: 300
 falling-stars-radius: 75
 falling-stars-sound-enabled: true
 falling-stars-volume: 6
 falling-stars-spark-time: 200
-falling-stars-experience: 100
+falling-stars-experience: 25
 falling-stars-loot:
- diamond: 60
- emerald: 20
- fire_charge: 20
+ diamond: 1
+ emerald: 0
+ fire_charge: 0
 new-moon-meteor-shower: true
-shooting-stars-per-minute-during-meteor-showers: 15
-falling-stars-per-minute-during-meteor-showers: 0.3
-shooting-stars-summon-text: "Make a wish!"
-falling-stars-summon-text: "Make a wish!"
+shooting-stars-per-minute-during-meteor-showers: 36
+falling-stars-per-minute-during-meteor-showers: 0.4
+shooting-stars-summon-text: "&eMake a wish!"
+falling-stars-summon-text: "&eWish granted!"
 debug: false

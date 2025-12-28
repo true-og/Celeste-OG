@@ -1,9 +1,8 @@
 name: Celeste-OG
-version: 1.0
-api-version: 1.19
-authors: [NotAlexNoyle, Idrees]
+version: '${version}'
+api-version: '${apiVersion}'
+authors: [Idrees, NotAlexNoyle]
 main: net.trueog.celeste.Celeste
-
 commands:
   celeste:
     description: Reloads the plugin configuration or prints runtime info
@@ -16,7 +15,6 @@ commands:
     description: Creates a falling star near the player that summons it, or optionally near another player
     usage: /<command> [player]
     permission: celeste.fallingstar
-
 permissions:
   celeste.*:
     description: Gives access to all Celeste-OG commands
