@@ -14,6 +14,10 @@ Inspired by the shooting stars from Animal Crossing and the falling stars from B
 - Optional daytime falling stars with a configurable multiplier, by [rm20killer](https://github.com/rm20killer)
 - `/celeste info` shows the effective highest falling star rate, by [rm20killer](https://github.com/rm20killer)
 
+<a href="https://discord.gg/6yxE9prcNc" target="_blank">
+	<img alt="Discord" src="https://img.shields.io/discord/1398471368403583120?logo=discord&logoColor=fff&label=discord&color=5865F2">
+</a>
+
 ## Features
 - Add shooting stars to the night sky with configurable frequency
 - Find rare falling stars that deliver precious materials in a sparkling package
