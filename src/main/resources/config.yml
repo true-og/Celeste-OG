@@ -22,3 +22,12 @@ falling-stars-per-minute-during-meteor-showers: 0.4
 shooting-stars-summon-text: "&eMake a wish!"
 falling-stars-summon-text: "&eWish granted!"
 debug: false
+# Adaptive settings
+# This settings will increase falling-stars-per-minute and shooting-stars-per-minute depending on player count.
+# 0 is disabled, 1 will increase it by 0.1 for every player, 2 will increase it by 0.2 for every 2 players etc
+adaptive-falling-stars: 0
+adaptive-shooting-stars: 0
+adaptive-use-global-player-count: true
+# Allow falling stars to spawn during the day with a lower chance.
+falling-stars-daylight: false
+falling-stars-day-multiplicative: 0

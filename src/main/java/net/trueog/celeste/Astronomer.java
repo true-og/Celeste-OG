@@ -27,6 +27,8 @@ public class Astronomer extends BukkitRunnable {
         List<World> worlds = celeste.getServer().getWorlds();
         for (World world : worlds) {
 
+            float multiplier = 1;
+
             CelesteConfig config = celeste.configManager.getConfigForWorld(world.getName());
             if (!celeste.configManager.doesWorldHaveOverrides(world.getName())
                     && !world.getEnvironment().equals(World.Environment.NORMAL))
@@ -46,7 +48,13 @@ public class Astronomer extends BukkitRunnable {
 
             if (!(world.getTime() >= config.beginSpawningStarsTime && world.getTime() <= config.endSpawningStarsTime)) {
 
-                continue;
+                if (!config.starsDaylight) {
+
+                    continue;
+
+                }
+
+                multiplier = config.dayMultiplier;
 
             }
 
@@ -58,18 +66,55 @@ public class Astronomer extends BukkitRunnable {
 
             double shootingStarChance;
             double fallingStarChance;
-            if (config.newMoonMeteorShower && (world.getFullTime() / 24000) % 8 == 4) {
+            double shootingStarsPerMin;
+            double fallingStarPerMin;
+            double adaptiveShootingStarsChance = 0;
+            double adaptiveFallingStarsChance = 0;
+            if (config.adaptiveShootingStars != 0) {
 
-                shootingStarChance = config.shootingStarsPerMinuteMeteorShower / 120d;
-                fallingStarChance = config.fallingStarsPerMinuteMeteorShower / 120d;
+                if (config.adaptiveGlobalPlayerCount) {
 
-            } else {
+                    adaptiveShootingStarsChance = (celeste.getServer().getOnlinePlayers().size()
+                            / config.adaptiveShootingStars) * 0.1;
 
-                shootingStarChance = config.shootingStarsPerMinute / 120d;
-                fallingStarChance = config.fallingStarsPerMinute / 120d;
+                } else {
+
+                    adaptiveShootingStarsChance = (world.getPlayers().size() / config.adaptiveShootingStars) * 0.1;
+
+                }
 
             }
 
+            if (config.adaptiveFallingStars != 0) {
+
+                if (config.adaptiveGlobalPlayerCount) {
+
+                    adaptiveFallingStarsChance = (celeste.getServer().getOnlinePlayers().size()
+                            / config.adaptiveFallingStars) * 0.1;
+
+                } else {
+
+                    adaptiveFallingStarsChance = (world.getPlayers().size() / config.adaptiveFallingStars) * 0.1;
+
+                }
+
+            }
+
+            if (config.newMoonMeteorShower && (world.getFullTime() / 24000) % 8 == 4) {
+
+                shootingStarsPerMin = adaptiveShootingStarsChance + config.shootingStarsPerMinuteMeteorShower;
+                fallingStarPerMin = (adaptiveFallingStarsChance + config.fallingStarsPerMinuteMeteorShower)
+                        * multiplier;
+
+            } else {
+
+                shootingStarsPerMin = adaptiveShootingStarsChance + config.shootingStarsPerMinute;
+                fallingStarPerMin = (adaptiveFallingStarsChance + config.fallingStarsPerMinute) * multiplier;
+
+            }
+
+            shootingStarChance = shootingStarsPerMin / 120d;
+            fallingStarChance = fallingStarPerMin / 120d;
             if (config.shootingStarsEnabled && new Random().nextDouble() <= shootingStarChance) {
 
                 CelestialSphere.createShootingStar(celeste,
