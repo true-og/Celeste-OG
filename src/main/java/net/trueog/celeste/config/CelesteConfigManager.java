@@ -21,14 +21,16 @@ public class CelesteConfigManager {
     public void processConfigs() {
 
         this.worldConfigs.clear();
-        FileConfiguration config = this.celeste.getConfig();
+
+        final FileConfiguration config = this.celeste.getConfig();
         globalConfig = new CelesteConfig(config);
-        ConfigurationSection worlds = config.getConfigurationSection("world-overrides");
+
+        final ConfigurationSection worlds = config.getConfigurationSection("world-overrides");
         if (worlds != null) {
 
             for (String world : worlds.getKeys(false)) {
 
-                ConfigurationSection worldSettings = worlds.getConfigurationSection(world);
+                final ConfigurationSection worldSettings = worlds.getConfigurationSection(world);
                 if (worldSettings == null) {
 
                     this.celeste.getLogger().severe("Your world override config for world '" + world
@@ -37,7 +39,7 @@ public class CelesteConfigManager {
 
                 }
 
-                CelesteConfig worldConfig = new CelesteConfig(worldSettings, globalConfig);
+                final CelesteConfig worldConfig = new CelesteConfig(worldSettings, globalConfig);
                 worldConfigs.put(world, worldConfig);
 
             }

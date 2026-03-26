@@ -1,12 +1,13 @@
 package net.trueog.celeste.commands;
 
-import net.trueog.celeste.Celeste;
-import net.trueog.celeste.CelestialSphere;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import net.trueog.celeste.Celeste;
+import net.trueog.celeste.CelestialSphere;
 
 public class CommandFallingStar implements CommandExecutor {
 
@@ -18,6 +19,7 @@ public class CommandFallingStar implements CommandExecutor {
 
     }
 
+    @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (args.length > 0) {
@@ -33,9 +35,8 @@ public class CommandFallingStar implements CommandExecutor {
 
         } else {
 
-            if (sender instanceof Player) {
+            if (sender instanceof Player player) {
 
-                Player player = (Player) sender;
                 CelestialSphere.createFallingStar(celeste, player, false);
 
             } else {
@@ -46,7 +47,7 @@ public class CommandFallingStar implements CommandExecutor {
 
         }
 
-        String message = this.celeste.getConfig().getString("falling-stars-summon-text");
+        final String message = this.celeste.getConfig().getString("falling-stars-summon-text");
         if (message != null) {
 
             sender.sendMessage(message);

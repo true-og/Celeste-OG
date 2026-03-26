@@ -5,7 +5,7 @@ end-spawning-stars-time: 23000
 shooting-stars-per-minute: 12
 shooting-stars-min-height: 160
 shooting-stars-max-height: 310
-falling-stars-per-minute: 0.2
+falling-stars-per-minute: 0.1
 falling-stars-max-height: 300
 falling-stars-radius: 75
 falling-stars-sound-enabled: true

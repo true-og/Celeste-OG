@@ -1,12 +1,14 @@
 package net.trueog.celeste.commands;
 
-import net.trueog.celeste.Celeste;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import java.util.List;
+import net.trueog.celeste.Celeste;
 
 public class CommandCeleste implements CommandExecutor {
 
@@ -18,9 +20,10 @@ public class CommandCeleste implements CommandExecutor {
 
     }
 
+    @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+        if (args.length == 1 && StringUtils.equalsIgnoreCase(args[0], "reload")) {
 
             if (sender.hasPermission("celeste.reload")) {
 
@@ -35,12 +38,12 @@ public class CommandCeleste implements CommandExecutor {
 
             return true;
 
-        } else if (args.length == 1 && args[0].equalsIgnoreCase("info")) {
+        } else if (args.length == 1 && StringUtils.equalsIgnoreCase(args[0], "info")) {
 
             if (sender.hasPermission("celeste.info")) {
 
                 double fallingStarRate = 0;
-                double adaptiveFallingStars = celeste.getConfig().getDouble("adaptive-falling-stars");
+                final double adaptiveFallingStars = celeste.getConfig().getDouble("adaptive-falling-stars");
                 if (adaptiveFallingStars != 0) {
 
                     if (celeste.getConfig().getBoolean("adaptive-use-global-player-count")) {
@@ -49,11 +52,11 @@ public class CommandCeleste implements CommandExecutor {
 
                     } else {
 
-                        List<World> worlds = celeste.getServer().getWorlds();
+                        final List<World> worlds = celeste.getServer().getWorlds();
                         double highestRate = 0;
                         for (World world : worlds) {
 
-                            double worldRate = (world.getPlayers().size() / adaptiveFallingStars) * 0.1;
+                            final double worldRate = (world.getPlayers().size() / adaptiveFallingStars) * 0.1;
                             if (highestRate < worldRate) {
 
                                 highestRate = worldRate;
@@ -70,7 +73,7 @@ public class CommandCeleste implements CommandExecutor {
 
                 fallingStarRate = fallingStarRate + celeste.getConfig().getDouble("falling-stars-per-minute");
 
-                sender.sendMessage("Celeste-OG v" + celeste.getDescription().getVersion());
+                sender.sendMessage("Celeste-OG v" + celeste.getPluginMeta().getVersion());
                 sender.sendMessage("Shooting stars: "
                         + (celeste.getConfig().getBoolean("shooting-stars-enabled") ? "Enabled" : "Disabled"));
                 sender.sendMessage("Falling stars: "

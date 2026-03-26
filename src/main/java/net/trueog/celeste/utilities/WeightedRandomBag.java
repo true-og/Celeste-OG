@@ -1,6 +1,7 @@
 package net.trueog.celeste.utilities;
 // From https://gamedev.stackexchange.com/a/162987
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,23 +15,25 @@ public class WeightedRandomBag<T extends Object> {
 
     }
 
-    public List<Entry> entries = new ArrayList<Entry>();
+    public List<Entry> entries = new ArrayList<>();
     private double accumulatedWeight;
-    private Random rand = new Random();
+    private Random rand = new SecureRandom();
 
     public void addEntry(T object, double weight) {
 
         accumulatedWeight += weight;
-        Entry e = new Entry();
+
+        final Entry e = new Entry();
         e.object = object;
         e.accumulatedWeight = accumulatedWeight;
+
         entries.add(e);
 
     }
 
     public T getRandom() {
 
-        double r = rand.nextDouble() * accumulatedWeight;
+        final double r = rand.nextDouble() * accumulatedWeight;
         for (Entry entry : entries) {
 
             if (entry.accumulatedWeight >= r) {
@@ -41,7 +44,7 @@ public class WeightedRandomBag<T extends Object> {
 
         }
 
-        // Should only happen when there are no entries
+        // Should only happen when there are no entries.
         return null;
 
     }

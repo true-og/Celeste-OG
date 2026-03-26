@@ -11,34 +11,34 @@ import net.trueog.celeste.config.CelesteConfigManager;
 
 public class Celeste extends JavaPlugin {
 
-	public CelesteConfigManager configManager = new CelesteConfigManager(this);
+    public CelesteConfigManager configManager = new CelesteConfigManager(this);
 
-	@Override
-	public void onEnable() {
+    @Override
+    public void onEnable() {
 
-		this.saveDefaultConfig();
+        this.saveDefaultConfig();
 
-		this.getCommand("celeste").setExecutor(new CommandCeleste(this));
-		this.getCommand("shootingstar").setExecutor(new CommandShootingStar(this));
-		this.getCommand("fallingstar").setExecutor(new CommandFallingStar(this));
-		configManager.processConfigs();
+        this.getCommand("celeste").setExecutor(new CommandCeleste(this));
+        this.getCommand("shootingstar").setExecutor(new CommandShootingStar(this));
+        this.getCommand("fallingstar").setExecutor(new CommandFallingStar(this));
+        configManager.processConfigs();
 
-		final BukkitRunnable stargazingTask = new Astronomer(this);
-		stargazingTask.runTaskTimer(this, 0, 10);
+        final BukkitRunnable stargazingTask = new Astronomer(this);
+        stargazingTask.runTaskTimer(this, 0, 10);
 
-	}
+    }
 
-	public void reload() {
+    public void reload() {
 
-		reloadConfig();
-		configManager.processConfigs();
+        reloadConfig();
+        configManager.processConfigs();
 
-	}
+    }
 
-	public static void getLogger(String message) {
+    public static void getLogger(String message) {
 
-		Bukkit.getLogger().info("[Celeste-OG]" + message);
+        Bukkit.getLogger().info("[Celeste-OG]" + message);
 
-	}
+    }
 
 }

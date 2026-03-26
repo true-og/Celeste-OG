@@ -1,7 +1,7 @@
 package net.trueog.celeste;
 
-import java.util.Random;
-import net.trueog.celeste.config.CelesteConfig;
+import java.security.SecureRandom;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -11,6 +11,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import net.trueog.celeste.config.CelesteConfig;
 
 public class FallingStar extends BukkitRunnable {
 
@@ -35,17 +37,21 @@ public class FallingStar extends BukkitRunnable {
 
     }
 
+    @Override
     public void run() {
 
-        double step = 2; // Speed of fall increased to compensate for increased height.
+        // Speed of fall increased to compensate for increased height.
+        final double step = 2;
+
         location.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, location.getX(), y, location.getZ(), 0, 0,
-                new Random().nextDouble(), 0, 0.2, null, true);
+                new SecureRandom().nextDouble(), 0, 0.2, null, true);
         location.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, location.getX(),
-                y + new Random().nextDouble() * step, location.getZ(), 0, 0, -1, 0, 1, null, true);
+                y + new SecureRandom().nextDouble() * step, location.getZ(), 0, 0, -1, 0, 1, null, true);
+
         if (y % (step * 2) == 0) {
 
-            location.getWorld().spawnParticle(Particle.LAVA, location.getX(), y + new Random().nextDouble(),
-                    location.getZ(), 0, 0, new Random().nextDouble(), 0, 0.2, null, true);
+            location.getWorld().spawnParticle(Particle.LAVA, location.getX(), y + new SecureRandom().nextDouble(),
+                    location.getZ(), 0, 0, new SecureRandom().nextDouble(), 0, 0.2, null, true);
 
         }
 
@@ -64,7 +70,7 @@ public class FallingStar extends BukkitRunnable {
                 // because why not
                 if (config.fallingStarSimpleLoot != null && config.fallingStarSimpleLoot.entries.size() > 0) {
 
-                    ItemStack drop = new ItemStack(Material.valueOf(config.fallingStarSimpleLoot.getRandom()), 1);
+                    final ItemStack drop = new ItemStack(Material.valueOf(config.fallingStarSimpleLoot.getRandom()), 1);
                     location.getWorld().dropItem(dropLoc, drop);
                     if (celeste.getConfig().getBoolean("debug")) {
 
@@ -77,12 +83,14 @@ public class FallingStar extends BukkitRunnable {
                 if (config.fallingStarLootTable != null) {
 
                     // Armor stands are used as markers are not compatible with 1.14
-                    Entity marker = dropLoc.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
-                    String command = String.format("execute at %s run loot spawn %s %s %s loot %s",
+                    final Entity marker = dropLoc.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
+                    final String command = "execute at %s run loot spawn %s %s %s loot %s".formatted(
                             marker.getUniqueId(), dropLoc.getX(), dropLoc.getY(), dropLoc.getZ(),
                             config.fallingStarLootTable);
                     celeste.getServer().dispatchCommand(celeste.getServer().getConsoleSender(), command);
+
                     marker.remove();
+
                     if (celeste.getConfig().getBoolean("debug")) {
 
                         celeste.getLogger().info(
@@ -94,9 +102,11 @@ public class FallingStar extends BukkitRunnable {
 
                 if (config.fallingStarsExperience > 0) {
 
-                    ExperienceOrb orb = (ExperienceOrb) dropLoc.getWorld().spawnEntity(dropLoc,
+                    final ExperienceOrb orb = (ExperienceOrb) dropLoc.getWorld().spawnEntity(dropLoc,
                             EntityType.EXPERIENCE_ORB);
+
                     orb.setExperience(config.fallingStarsExperience);
+
                     if (celeste.getConfig().getBoolean("debug")) {
 
                         celeste.getLogger()
@@ -112,8 +122,8 @@ public class FallingStar extends BukkitRunnable {
 
             if (y % (step * 5) == 0) {
 
-                location.getWorld().spawnParticle(Particle.LAVA, dropLoc, 0, 0, new Random().nextDouble(), 0, 1, null,
-                        true);
+                location.getWorld().spawnParticle(Particle.LAVA, dropLoc, 0, 0, new SecureRandom().nextDouble(), 0, 1,
+                        null, true);
 
             }
 

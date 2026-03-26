@@ -1,9 +1,11 @@
 package net.trueog.celeste.config;
 
-import net.trueog.celeste.Celeste;
-import net.trueog.celeste.utilities.WeightedRandomBag;
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
+
+import net.trueog.celeste.Celeste;
+import net.trueog.celeste.utilities.WeightedRandomBag;
 
 public class CelesteConfig {
 
@@ -36,14 +38,14 @@ public class CelesteConfig {
 
     public CelesteConfig(ConfigurationSection section) {
 
-        // Used to build the global config
+        // Used to build the global config.
         buildFromConfigurationSection(section);
 
     }
 
     public CelesteConfig(ConfigurationSection section, CelesteConfig globalConfig) {
 
-        // Used to build per-world configs
+        // Used to build per-world configs.
         buildFromConfigurationSectionWithGlobal(section, globalConfig);
 
     }
@@ -141,21 +143,21 @@ public class CelesteConfig {
 
     public WeightedRandomBag<String> calculateSimpleLoot(ConfigurationSection loot) {
 
-        WeightedRandomBag<String> fallingStarDrops = new WeightedRandomBag<>();
-        for (String key : loot.getKeys(false)) {
+        final WeightedRandomBag<String> fallingStarDrops = new WeightedRandomBag<>();
+        loot.getKeys(false).forEach(key -> {
 
             try {
 
-                Material.valueOf(key.toUpperCase());
-                fallingStarDrops.addEntry(key.toUpperCase(), loot.getDouble(key));
+                Material.valueOf(StringUtils.upperCase(key));
+                fallingStarDrops.addEntry(StringUtils.upperCase(key), loot.getDouble(key));
 
             } catch (IllegalArgumentException e) {
 
-                Celeste.getLogger("Error: Item with name " + key.toUpperCase() + " does not exist, skipping");
+                Celeste.getLogger("Error: Item with name " + StringUtils.upperCase(key) + " does not exist, skipping");
 
             }
 
-        }
+        });
 
         return fallingStarDrops;
 
