@@ -15,7 +15,10 @@ Inspired by the shooting stars from Animal Crossing and the falling stars from B
 - `/celeste info` shows the effective highest falling star rate, by [rm20killer](https://github.com/rm20killer)
 
 <a href="https://discord.gg/6yxE9prcNc" target="_blank">
-	<img alt="Discord" src="https://img.shields.io/discord/1398471368403583120?logo=discord&logoColor=fff&label=discord&color=5865F2">
+	<img alt="Idree's Discord" src="https://img.shields.io/discord/1398471368403583120?logo=discord&logoColor=fff&label=Idree%27s%20Discord&color=5865F2">
+</a>
+<a href="https://discord.gg/ma9pMYpBU6" target="_blank">
+	<img alt="TrueOG Network Discord" src="https://img.shields.io/badge/TrueOG%20Network-Discord-5865F2?logo=discord&logoColor=fff">
 </a>
 
 ## Features
