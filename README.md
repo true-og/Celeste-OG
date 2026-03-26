@@ -4,15 +4,15 @@ Celeste-OG is a 1.19 fork of [Celeste](https://github.com/IdreesInc/Celeste) mai
 Inspired by the shooting stars from Animal Crossing and the falling stars from Breath of the Wild, this plugin brings some celestial ambience to your Minecraft world.
 
 ## Fork Changes
-- Gradle build instead of Maven
-- Purpur API `1.19.4-R0.1-SNAPSHOT`
-- Java 17 toolchain
-- Removed bStats metrics
-- Removed update checker
-- Configurable falling star max height
-- Adaptive shooting star and falling star spawn rates based on player count
-- Optional daytime falling stars with a configurable multiplier
-- `/celeste info` shows the effective highest falling star rate
+- Gradle build instead of Maven, by [NotAlexNoyle](https://github.com/NotAlexNoyle)
+- Purpur API `1.19.4-R0.1-SNAPSHOT`, by [NotAlexNoyle](https://github.com/NotAlexNoyle)
+- Java 17 toolchain, by [NotAlexNoyle](https://github.com/NotAlexNoyle)
+- Removed bStats metrics, by [NotAlexNoyle](https://github.com/NotAlexNoyle)
+- Removed update checker, by [NotAlexNoyle](https://github.com/NotAlexNoyle)
+- Configurable falling star max height, by [SpaceXCheeseWheel](https://github.com/SpaceXCheeseWheel)
+- Adaptive shooting star and falling star spawn rates based on player count, by [rm20killer](https://github.com/rm20killer)
+- Optional daytime falling stars with a configurable multiplier, by [rm20killer](https://github.com/rm20killer)
+- `/celeste info` shows the effective highest falling star rate, by [rm20killer](https://github.com/rm20killer)
 
 ## Features
 - Add shooting stars to the night sky with configurable frequency
@@ -192,4 +192,6 @@ Permission: `celeste.info`
 
 ## Credits
 - Original plugin by [IdreesInc](https://github.com/IdreesInc)
-- Additional feature work merged from community/upstream branches including `rm20killer`
+- Fork build and platform migration work by [NotAlexNoyle](https://github.com/NotAlexNoyle)
+- Falling star max height config by [SpaceXCheeseWheel](https://github.com/SpaceXCheeseWheel)
+- Adaptive spawn scaling, daytime falling stars, and `/celeste info` rate display by [rm20killer](https://github.com/rm20killer)
