@@ -1,9 +1,12 @@
 package net.trueog.celeste.commands;
 
 import net.trueog.celeste.Celeste;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+
+import java.util.List;
 
 public class CommandCeleste implements CommandExecutor {
 
@@ -34,14 +37,45 @@ public class CommandCeleste implements CommandExecutor {
 
         } else if (args.length == 1 && args[0].equalsIgnoreCase("info")) {
 
-            String version = "1.0";
             if (sender.hasPermission("celeste.info")) {
 
-                sender.sendMessage("Celeste-OG" + version);
+                double fallingStarRate = 0;
+                double adaptiveFallingStars = celeste.getConfig().getDouble("adaptive-falling-stars");
+                if (adaptiveFallingStars != 0) {
+
+                    if (celeste.getConfig().getBoolean("adaptive-use-global-player-count")) {
+
+                        fallingStarRate = (celeste.getServer().getOnlinePlayers().size() / adaptiveFallingStars) * 0.1;
+
+                    } else {
+
+                        List<World> worlds = celeste.getServer().getWorlds();
+                        double highestRate = 0;
+                        for (World world : worlds) {
+
+                            double worldRate = (world.getPlayers().size() / adaptiveFallingStars) * 0.1;
+                            if (highestRate < worldRate) {
+
+                                highestRate = worldRate;
+
+                            }
+
+                        }
+
+                        fallingStarRate = highestRate;
+
+                    }
+
+                }
+
+                fallingStarRate = fallingStarRate + celeste.getConfig().getDouble("falling-stars-per-minute");
+
+                sender.sendMessage("Celeste-OG v" + celeste.getDescription().getVersion());
                 sender.sendMessage("Shooting stars: "
                         + (celeste.getConfig().getBoolean("shooting-stars-enabled") ? "Enabled" : "Disabled"));
                 sender.sendMessage("Falling stars: "
                         + (celeste.getConfig().getBoolean("falling-stars-enabled") ? "Enabled" : "Disabled"));
+                sender.sendMessage("Falling stars rate (highest): " + fallingStarRate);
                 sender.sendMessage("Meteor showers: "
                         + (celeste.getConfig().getBoolean("new-moon-meteor-shower") ? "Enabled" : "Disabled"));
 
