@@ -4,15 +4,22 @@ Celeste-OG is a 1.19 fork of [Celeste](https://github.com/IdreesInc/Celeste) mai
 Inspired by the shooting stars from Animal Crossing and the falling stars from Breath of the Wild, this plugin brings some celestial ambience to your Minecraft world.
 
 ## Fork Changes
-- Gradle build instead of Maven, by [NotAlexNoyle](https://github.com/NotAlexNoyle)
-- Purpur API `1.19.4-R0.1-SNAPSHOT`, by [NotAlexNoyle](https://github.com/NotAlexNoyle)
-- Java 17 toolchain, by [NotAlexNoyle](https://github.com/NotAlexNoyle)
-- Removed bStats metrics, by [NotAlexNoyle](https://github.com/NotAlexNoyle)
-- Removed update checker, by [NotAlexNoyle](https://github.com/NotAlexNoyle)
-- Configurable falling star max height, by [SpaceXCheeseWheel](https://github.com/SpaceXCheeseWheel)
-- Adaptive shooting star and falling star spawn rates based on player count, by [rm20killer](https://github.com/rm20killer)
-- Optional daytime falling stars with a configurable multiplier, by [rm20killer](https://github.com/rm20killer)
-- `/celeste info` shows the effective highest falling star rate, by [rm20killer](https://github.com/rm20killer)
+
+### [NotAlexNoyle](https://github.com/NotAlexNoyle)
+- Gradle build instead of Maven
+- Purpur API `1.19.4-R0.1-SNAPSHOT`
+- Java 17 toolchain
+- Removed bStats metrics
+- Removed update checker
+- World whitelist for falling stars (`falling-stars-world-whitelist`)
+
+### [SpaceXCheeseWheel](https://github.com/SpaceXCheeseWheel)
+- Configurable falling star max height
+
+### [rm20killer](https://github.com/rm20killer)
+- Adaptive shooting star and falling star spawn rates based on player count
+- Optional daytime falling stars with a configurable multiplier
+- `/celeste info` shows the effective highest falling star rate
 
 <a href="https://discord.gg/6yxE9prcNc" target="_blank">
 	<img alt="Idree's Discord" src="https://img.shields.io/discord/1398471368403583120?logo=discord&logoColor=fff&label=Idree%27s%20Discord&color=5865F2">
@@ -53,6 +60,7 @@ This fork also supports:
 - Adaptive spawn bonuses using either global online player count or per-world player count
 - Falling stars during daytime when `falling-stars-daylight` is enabled
 - Per-world overrides via `world-overrides`
+- Restricting falling stars to specific worlds via `falling-stars-world-whitelist`
 
 ## Build
 This repo no longer uses Maven.
@@ -113,6 +121,10 @@ adaptive-use-global-player-count: true
 # Allow falling stars to spawn during the day with a lower chance.
 falling-stars-daylight: false
 falling-stars-day-multiplicative: 0
+# World whitelist for falling stars (case-sensitive world names).
+# If empty, falling stars may spawn in any eligible world (default behavior).
+# If non-empty, falling stars only spawn in the listed worlds.
+falling-stars-world-whitelist: []
 ```
 
 ### Adaptive Spawn Settings
@@ -134,6 +146,22 @@ Example:
 - `falling-stars-day-multiplicative: 0.25`
 
 This keeps daytime falling stars possible while making them much rarer than nighttime events.
+
+### Falling Star World Whitelist
+- `falling-stars-world-whitelist`: Restricts natural falling stars to specific worlds (case-sensitive names)
+
+Behavior:
+- Empty list (default): falling stars may spawn in any otherwise-eligible world
+- Non-empty list: falling stars only spawn in the listed worlds
+
+Example:
+```yaml
+falling-stars-world-whitelist:
+  - world
+  - world_nether
+```
+
+This only affects natural spawns. The `/fallingstar` command still works in any world. Shooting stars are not affected.
 
 ### Falling Star Loot
 Falling stars can reward experience, simple weighted loot, or a Minecraft loot table.
@@ -199,6 +227,6 @@ Permission: `celeste.info`
 
 ## Credits
 - Original plugin by [IdreesInc](https://github.com/IdreesInc)
-- Fork build and platform migration work by [NotAlexNoyle](https://github.com/NotAlexNoyle)
+- Fork build, platform migration, and falling star world whitelist by [NotAlexNoyle](https://github.com/NotAlexNoyle)
 - Falling star max height config by [SpaceXCheeseWheel](https://github.com/SpaceXCheeseWheel)
 - Adaptive spawn scaling, daytime falling stars, and `/celeste info` rate display by [rm20killer](https://github.com/rm20killer)

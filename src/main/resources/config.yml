@@ -31,3 +31,12 @@ adaptive-use-global-player-count: true
 # Allow falling stars to spawn during the day with a lower chance.
 falling-stars-daylight: false
 falling-stars-day-multiplicative: 0
+# World whitelist for falling stars (case-sensitive world names).
+# If empty, falling stars may spawn in any eligible world (default behavior).
+# If non-empty, falling stars only spawn in the listed worlds.
+# Example:
+# falling-stars-world-whitelist:
+#  - world
+#  - world_nether
+falling-stars-world-whitelist:
+ - world
